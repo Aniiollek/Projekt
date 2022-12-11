@@ -1,2 +1,2 @@
 # Projekt
-Tu będzie projekt na zajęcia z Programowania Obiektowego
+Projekt ten będzie zawierał informacje o zmienie popularności w nadawaniu konkretnych imion męskich w latach 2020, 2021 i 2022. Porównamy popularność najczęściej wybieranych imion w danym roku. Będzie można zobaczyć tu także imiona, których nie było w latach poprzednich. Znajdziemy też najdłuższe oraz najkrótsze imię. Program policzy ile imion jest na konkretną literę. Będzie też możliwość wyszukania jakiegoś imienia i zobaczenia statystyk jego nadawania w przeciągu tych 3 lat.
