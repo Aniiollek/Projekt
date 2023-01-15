@@ -332,7 +332,7 @@ int main()
 	
 	vector<datas> PL_2020 = wczytaj_2("imiona2020.txt",znak);
 	vector<datas> PL_2021 = wczytaj_1("imiona2021.txt",znak);
-	vector<datas> PL_2022 = wczytaj_1("imiona2022.txt",znak2);
+	vector<datas> PL_2022 = wczytaj_1("imiona2022.csv",znak2);
 	vector<datas> SZK_2021 = wczytaj_szkocja("szkocja2021.txt");
 	//wypisz(PL_2020);
 	//wypisz(PL_2021);
