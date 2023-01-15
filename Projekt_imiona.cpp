@@ -1,10 +1,10 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include <fstream>
 #include <vector>
 #include "klasy.cpp"
-#include "naglowek.h"
 using namespace std;
+
 template<typename T>
 void wypisz(vector<T> my_datas)
 {
@@ -403,8 +403,3 @@ int main()
 	
 	return 1;
 }
-
-
-
-
-
