@@ -37,7 +37,6 @@ vector<datas> wczytaj_1(string file_name, char znak)
 		p = atoi(l.c_str());
 		v_temp.load(n, p);
 		Nam_Num.push_back(v_temp);
-
 	}
 	
 	fs.close();
@@ -65,7 +64,6 @@ vector<datas> wczytaj_2(string file_name, char znak)// potrzebne 2 funkcje bo w 
 		p = atoi(l.c_str());// zrob ze stringu int
 		v_temp.load(n, p);//zaladuj  wczytane dane do zmiennej
 		Nam_Num.push_back(v_temp);// zaladuj zmienna do vectora
-
 	}
 
 	fs.close();
@@ -100,7 +98,6 @@ vector<datas> wczytaj_szkocja(string file_name)
 		v_temp.load(n, p);
 		Nam_Num.push_back(v_temp);
 		getline(fs, l);
-
 	}
 
 	fs.close();
@@ -109,9 +106,6 @@ vector<datas> wczytaj_szkocja(string file_name)
 
 vector<statystyki> nazwa(vector<datas> vec0, vector<datas> vec1, vector<datas> vec2)
 {
-
-	
-	
 	vector<statystyki> stats = {};
 	for (auto el : vec0)
 	{
@@ -125,7 +119,6 @@ vector<statystyki> nazwa(vector<datas> vec0, vector<datas> vec1, vector<datas> v
 		{
 			statystyki st(el.get_name(), 0, el.get_number(), find(el.get_name(), vec2));// wszystkie imiona z 2021 (które nie były w 2020) dopelnione 2022 rokiem
 			stats.push_back(st);
-			
 		}
 	}
 	
@@ -160,6 +153,7 @@ void zapis_2021(vector<statystyki> st)
 		i++;
 	}
 }
+
 void zapis_2022(vector<statystyki> st)
 {
 	fstream fs{ "myfile.txt", ios::app };// dopisz do pliku
@@ -180,6 +174,7 @@ void zapis_2022(vector<statystyki> st)
 		i++;
 	}
 }
+
 void zapis_nie20_tak21(vector<statystyki> st, vector<string>& zap)
 {
 	fstream fs{ "myfile.txt", ios::app };// dopisz do pliku
@@ -198,6 +193,7 @@ void zapis_nie20_tak21(vector<statystyki> st, vector<string>& zap)
 		i++;
 	}
 }
+
 void zapis_nie20_nie21_tak22(vector<statystyki>& st, vector<string>& zap)
 {
 	fstream fs{ "myfile.txt", ios::app };// dopisz do pliku
@@ -215,6 +211,7 @@ void zapis_nie20_nie21_tak22(vector<statystyki>& st, vector<string>& zap)
 		i++;
 	}
 }
+
 template<typename T>
 void Szkocja_i_Pl(vector<T> vec1, vector<datas> szkocja, vector<string> &zap)
 {
@@ -248,6 +245,7 @@ void menu()
 	cout << "5  -  Zobacz jakie imiona były nadane zarówno w Szkocji (w 2021) i w Polsce w latach (2020, 2021 i 2022)" << endl;
 	cout << "6  -  Wypisz imiona na litere" << endl;
 }
+
 void zobacz_konkretne_imie(vector<statystyki> st, vector<datas> szkocja)
 {
 	int f{ 0 };// 0 gdy imienia nie znaleziono, 1 gdy znaleziono
@@ -343,7 +341,6 @@ int main()
 	
 	vector<statystyki> stat=nazwa(PL_2020, PL_2021, PL_2022);
 	
-
 	zapis_2021(stat);
 
 	zapis_2022(stat);
