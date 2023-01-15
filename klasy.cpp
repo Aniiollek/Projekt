@@ -36,7 +36,7 @@ public:
 	friend void zobacz_konkretne_imie(vector<statystyki> st, vector<datas> szkocja);
 	template<typename T>
 	friend void Szkocja_i_Pl(vector<T> vec1, vector<datas> szkocja, vector<string>& zap);
-	friend vector<statystyki> nazwa(vector<datas> vec0, vector<datas> vec1, vector<datas> vec2);
+	friend vector<statystyki> sporzadz_statystyki(vector<datas> vec0, vector<datas> vec1, vector<datas> vec2);
 };
  
 class statystyki 
@@ -45,8 +45,6 @@ class statystyki
 	int num2020;
 	int num2021;
 	int num2022;
-	int tendencja_20_na_21;
-	int tendencja_21_na_22;
 
 public:
 	statystyki(){}
