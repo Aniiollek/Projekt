@@ -15,7 +15,7 @@ void wypisz(vector<T> my_datas)
 	cout << endl;
 }
 
-vector<datas> wczytaj_1(string file_name, char znak)
+vector<datas> wczytaj_1(string file_name, char znak)// wczytujemy dane z pliku
 {
 	ifstream fs{ file_name };
 
@@ -70,7 +70,7 @@ vector<datas> wczytaj_2(string file_name, char znak)// potrzebne 2 funkcje bo w 
 	return Nam_Num; //zwroc vector
 }
 
-vector<datas> wczytaj_szkocja(string file_name)
+vector<datas> wczytaj_szkocja(string file_name)// wczytujemy dane z imionami w szkocji z pliku
 {
 	ifstream fs{ file_name };
 
@@ -86,15 +86,15 @@ vector<datas> wczytaj_szkocja(string file_name)
 		getline(fs, temp);
 	}
 	
-	while (!fs.eof())
+	while (!fs.eof())// dopoki plik niepusty
 	{
 		getline(fs, temp, ',');
 		getline(fs, n, ',');
 		getline(fs, l, ',');
-		for (int i{ 0 }; i < n.size(); i++) {
+		for (int i{ 0 }; i < n.size(); i++) {// zmieniamy wczytane imiona by byly zapisane duzyli literami
 			n[i] = toupper(n[i]);
 		}
-		p = atoi(l.c_str());
+		p = atoi(l.c_str());// konwertujemy string na int
 		v_temp.load(n, p);
 		Nam_Num.push_back(v_temp);
 		getline(fs, l);
@@ -104,9 +104,9 @@ vector<datas> wczytaj_szkocja(string file_name)
 	return Nam_Num;
 }
 
-vector<statystyki> nazwa(vector<datas> vec0, vector<datas> vec1, vector<datas> vec2)
+vector<statystyki> sporzadz_statystyki(vector<datas> vec0, vector<datas> vec1, vector<datas> vec2)
 {
-	vector<statystyki> stats = {};
+	vector<statystyki> stats = {};// vector w ktorym bedziemy przechowywac statystyki
 	for (auto el : vec0)
 	{
 		statystyki st(el.get_name(), el.get_number(), find(el.get_name(), vec1), find(el.get_name(), vec2));// wszystkie imiona z 2020 dopelnione imionami z pozniejszych lat 
@@ -134,7 +134,7 @@ vector<statystyki> nazwa(vector<datas> vec0, vector<datas> vec1, vector<datas> v
 	return stats;
 }
 
-void zapis_2021(vector<statystyki> st)
+void zapis_2021(vector<statystyki> st)// zapisujemy do pliku dane o roku 2021
 {
 	fstream fs{ "myfile.txt", ios::out };// zapisz do pliku
 	fs << "Ilość męskich imion nadanych w 2021 " << endl;
@@ -154,7 +154,7 @@ void zapis_2021(vector<statystyki> st)
 	}
 }
 
-void zapis_2022(vector<statystyki> st)
+void zapis_2022(vector<statystyki> st)// zapisujemy do pliku dane o roku 2022
 {
 	fstream fs{ "myfile.txt", ios::app };// dopisz do pliku
 	fs << endl;
@@ -175,7 +175,7 @@ void zapis_2022(vector<statystyki> st)
 	}
 }
 
-void zapis_nie20_tak21(vector<statystyki> st, vector<string>& zap)
+void zapis_nie20_tak21(vector<statystyki> st, vector<string>& zap)// zapisujemy do pliku dane o imionach ktorych nie bylo w 2020, a byly w 2021
 {
 	fstream fs{ "myfile.txt", ios::app };// dopisz do pliku
 	fs << endl;
@@ -194,7 +194,7 @@ void zapis_nie20_tak21(vector<statystyki> st, vector<string>& zap)
 	}
 }
 
-void zapis_nie20_nie21_tak22(vector<statystyki>& st, vector<string>& zap)
+void zapis_nie20_nie21_tak22(vector<statystyki>& st, vector<string>& zap)// zapisujemy do pliku dane o imionach ktorych nie bylo w 2021, a byly w 2022
 {
 	fstream fs{ "myfile.txt", ios::app };// dopisz do pliku
 	fs << endl;
@@ -212,8 +212,8 @@ void zapis_nie20_nie21_tak22(vector<statystyki>& st, vector<string>& zap)
 	}
 }
 
-template<typename T>
-void Szkocja_i_Pl(vector<T> vec1, vector<datas> szkocja, vector<string> &zap)
+template<typename T>// przekazemy albo wszystkie imiona z lat 2020, 2021 i 2022 albo tylko imiona w 2021
+void Szkocja_i_Pl(vector<T> vec1, vector<datas> szkocja, vector<string> &zap)// zapisujemy do pliku dane o imionach w Szkocji i w Polsce
 {
 	fstream fs{ "myfile.txt", ios::app };// dopisz do pliku
 	fs << endl;
@@ -246,14 +246,14 @@ void menu()
 	cout << "6  -  Wypisz imiona na litere" << endl;
 }
 
-void zobacz_konkretne_imie(vector<statystyki> st, vector<datas> szkocja)
+void zobacz_konkretne_imie(vector<statystyki> st, vector<datas> szkocja)// wczytamy imie z konsoli i wyszukamy o nim dane
 {
 	int f{ 0 };// 0 gdy imienia nie znaleziono, 1 gdy znaleziono
 	cout << "O jakim imieniu chcialbys/chcialabys zobaczyc statystyki? \n";
-	string imie;
+	string imie;// tu bedziemy przechowywac wczytane imie
 	string tendencja{};
 	cin >> imie;
-	for (int i{ 0 }; i < imie.size(); i++) {
+	for (int i{ 0 }; i < imie.size(); i++) {// zamieniamy napisane przez uzytkownika imie na duze litery
 		imie[i] = toupper(imie[i]);
 	}
 
@@ -261,32 +261,32 @@ void zobacz_konkretne_imie(vector<statystyki> st, vector<datas> szkocja)
 	{
 		if (el.name == imie)
 		{
-			f = 1;
+			f = 1;// 1 bo znalezlismy to imie
 			cout << "Imie: \t " << el.name << endl;
 			cout << "Ilosc osob o tym imieniu w 2020: \t" << el.num2020 << endl;
 			cout << "Ilosc osob o tym imieniu w 2021: \t" << el.num2021 << endl;
 			cout << "Ilosc osob o tym imieniu w 2022: \t" << el.num2022 << endl;
-			if ((el.num2021 - el.num2020) < 0)
+			if ((el.num2021 - el.num2020) < 0) //patrzymy jaka tendencja z 2020 na 2021 rok
 				tendencja = "malejaca";
 			else if ((el.num2021 - el.num2020) > 0)
 				tendencja = "rosnaca";
 			else
 				tendencja = "stala";
 			cout << "Tendencja tego imienia w 2021: \t" << tendencja << endl;
-			if ((el.num2022 - el.num2021) < 0)
+			if ((el.num2022 - el.num2021) < 0)//patrzymy jaka tendencja z 2021 na 2022 rok
 				tendencja = "malejaca";
 			else if ((el.num2022 - el.num2021) > 0)
 				tendencja = "rosnaca";
 			else
 				tendencja = "stala";
 			cout << "Tendencja tego imienia w 2022: \t" << tendencja << endl;
-			for (auto el : szkocja)
+			for (auto el : szkocja)// szukamy podanego imienia wsrod imion andanych w szkocji
 			{
-				if (imie == el.name)
+				if (imie == el.name)// jesli znalezlismy to wypisujemy komunikat
 					cout << "To imie bylo nadane rowniez w Szkocji w 2021 " << endl;
 
 			}
-			break;
+			break;//jesli znalezlismy to imie to nie przeszukujmy dalej tablicy tylko z niej wyjdzmy
 		}
 
 
@@ -296,25 +296,25 @@ void zobacz_konkretne_imie(vector<statystyki> st, vector<datas> szkocja)
 	f = 0;
 }
 
-void imiona_na_litere(vector<statystyki> st)
+void imiona_na_litere(vector<statystyki> st)// funkcja do szukania imion na podana przez uzytkownika litere
 {
-	char litera;
+	char litera;// tu zapiszemy podana przez uzytkownika litere
 	cout << "Podaj litere: ";
 	cin >> litera;
-	litera = toupper(litera);
+	litera = toupper(litera);//zmienianie podanej litery na duza
 	cout << "Imiona na litere " << litera << " :" << endl;
 	for (auto el : st)
 	{
-		if (el.name.at(0) == litera)
+		if (el.name.at(0) == litera)// porownywanie 1  litery imion z podana litera
 			cout << el.name << endl;
 	}
 }
-int find(string na, vector<datas> &vec)
+int find(string na, vector<datas> &vec)// funkcjia wykorzystywana do tworzenia vectora statystyk
 {
 	int temp{ 0 };
 	for (int i{0};i<vec.size();i++)
 	{
-		if (na == vec[i].name)
+		if (na == vec[i].name)// szukanie imienia wyslanego do tej funkcji w vektorze
 		{
 			temp = vec[i].number;
 			vec.erase(vec.begin()+i); //usuwanie imienia ktore juz wystapilo zeby pozniej nie przeszukiwac jeszcze raz
@@ -339,7 +339,7 @@ int main()
 	//wypisz(PL_2022);
 	//wypisz(SZK_2021);
 	
-	vector<statystyki> stat=nazwa(PL_2020, PL_2021, PL_2022);
+	vector<statystyki> stat=sporzadz_statystyki(PL_2020, PL_2021, PL_2022);
 	
 	zapis_2021(stat);
 
