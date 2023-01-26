@@ -243,7 +243,7 @@ void menu()
 	cout << "3  -  Imiona których nie było w 2020 ani 2021 (były w 2022) " << endl; 
 	cout << "4  -  Zobacz jakie imiona były nadane zarówno w Szkocji i w Polsce w 2021" << endl;
 	cout << "5  -  Zobacz jakie imiona były nadane zarówno w Szkocji (w 2021) i w Polsce w latach (2020, 2021 i 2022)" << endl;
-	cout << "6  -  Wypisz imiona na litere" << endl;
+	cout << "6  -  Wypisz 15 imion na litere" << endl;
 }
 
 void zobacz_konkretne_imie(vector<statystyki> st, vector<datas> szkocja)// wczytamy imie z konsoli i wyszukamy o nim dane
@@ -301,12 +301,21 @@ void imiona_na_litere(vector<statystyki> st)// funkcja do szukania imion na poda
 	char litera;// tu zapiszemy podana przez uzytkownika litere
 	cout << "Podaj litere: ";
 	cin >> litera;
+	if (litera < 'A' || (litera > 'Z' && litera < 'a') || litera>'z')
+		return;
+
 	litera = toupper(litera);//zmienianie podanej litery na duza
 	cout << "Imiona na litere " << litera << " :" << endl;
+	int i = 0;
 	for (auto el : st)
 	{
-		if (el.name.at(0) == litera)// porownywanie 1  litery imion z podana litera
+		if (el.name.at(0) == litera)
+		{
 			cout << el.name << endl;
+			i++;
+		}
+		
+		if (i == 15)break;
 	}
 }
 int find(string na, vector<datas> &vec)// funkcjia wykorzystywana do tworzenia vectora statystyk
